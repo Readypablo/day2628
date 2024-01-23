@@ -26,9 +26,9 @@ include("bd_connect/auth_session.php");
 
 
 <div class="popular-row">
-
-<form action="submit.php" method="POST">
-<h2>test1</h2>
+<!-- 
+<form action="submit.php" method="POST" class="fff">
+<h2>test1</h2> -->
         <?php
 
 
@@ -43,61 +43,31 @@ if(mysqli_connect_errno()){
 }
 
 
-        // Получить список вопросов из базы данных
-        $sql = "SELECT * FROM questions";
-        $result = mysqli_query($con, $sql);
-
-        if (mysqli_num_rows($result) > 0) {
 
 
 
-            while ($row = mysqli_fetch_assoc($result)) {
-                $question_id = $row['id'];
-                $question_text = $row['question_text'];
-                if($row['test_id']==1){
-                echo '<p>' . $question_text . '</p>';
+$query = "SELECT MAX(test_id) FROM questions";
 
-                // Получить список вариантов ответов для каждого вопроса
-                $sql_answers = "SELECT * FROM answers WHERE question_id = $question_id";
-                $result_answers = mysqli_query($con, $sql_answers);
+$result = mysqli_query($con, $query);
 
-                if (mysqli_num_rows($result_answers) > 0) {
-                    while ($row_answer = mysqli_fetch_assoc($result_answers)) {
-                        $answer_id = $row_answer['id'];
-                        $answer_text = $row_answer['answer_text'];
+while ($row = mysqli_fetch_assoc($result)) {
 
-                        echo '<input type="radio" name="answer[' . $question_id . ']" value="' . $answer_id . '" required>';
-                        echo '<label for="' . $answer_id . '">' . $answer_text . '</label>';
-                        echo '<br>';
-                    }
-                }
-              }
-            }
-        }
+$max=$row['MAX(test_id)'];
 
 
 
 
+}
+
+
+// //////////////////////
+for ($i=0; $i <=$max ; $i++) { 
+echo '<form action="submit.php" method="POST" class="fff">';
+echo '<h2>test'.$i.'</h2>';
 
 
 
-        
-        ?>
-
-        <input type="submit" value="Отправить">
-    </form>
-
-    <form action="submit.php" method="POST">
-
-
-<h2>test2</h2>
-
-
-
-
-<?php 
-
-$sql = "SELECT * FROM questions";
+$sql = "SELECT * FROM questions ";
 $result = mysqli_query($con, $sql);
 
 if (mysqli_num_rows($result) > 0) {
@@ -107,7 +77,7 @@ if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
         $question_id = $row['id'];
         $question_text = $row['question_text'];
-        if($row['test_id']==0){
+        if($row['test_id']==$i){
         echo '<p>' . $question_text . '</p>';
 
         // Получить список вариантов ответов для каждого вопроса
@@ -131,17 +101,187 @@ if (mysqli_num_rows($result) > 0) {
 
 
 
+
+    echo '<input type="submit" value="Отправить">
+    </form>';
+    // //////////////////////
+}
+
+
+
+
+
+
+
+
+
+        // Получить список вопросов из базы данных
+        // $sql = "SELECT * FROM questions LIMIT 5";
+        // $result = mysqli_query($con, $sql);
+
+        // if (mysqli_num_rows($result) > 0) {
+
+
+
+        //     while ($row = mysqli_fetch_assoc($result)) {
+        //         $question_id = $row['id'];
+        //         $question_text = $row['question_text'];
+        //         if($row['test_id']==1){
+        //         echo '<p>' . $question_text . '</p>';
+
+        //         // Получить список вариантов ответов для каждого вопроса
+        //         $sql_answers = "SELECT * FROM answers WHERE question_id = $question_id";
+        //         $result_answers = mysqli_query($con, $sql_answers);
+
+        //         if (mysqli_num_rows($result_answers) > 0) {
+        //             while ($row_answer = mysqli_fetch_assoc($result_answers)) {
+        //                 $answer_id = $row_answer['id'];
+        //                 $answer_text = $row_answer['answer_text'];
+
+        //                 echo '<input type="radio" name="answer[' . $question_id . ']" value="' . $answer_id . '" required>';
+        //                 echo '<label for="' . $answer_id . '">' . $answer_text . '</label>';
+        //                 echo '<br>';
+        //             }
+        //         }
+        //       }
+        //     }
+        // }
+
+
+
+
+
+        
+        ?>
+<!-- 
+        <input type="submit" value="Отправить">
+    </form> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
+
+    <form action="submit.php" method="POST" class="fff">
+
+
+<h2>test2</h2>
+
+ -->
+
+
+<?php 
+
+// $sql = "SELECT * FROM questions  LIMIT 5,5";
+// $result = mysqli_query($con, $sql);
+
+// if (mysqli_num_rows($result) > 0) {
+
+
+
+//     while ($row = mysqli_fetch_assoc($result)) {
+//         $question_id = $row['id'];
+//         $question_text = $row['question_text'];
+//         if($row['test_id']==0){
+//         echo '<p>' . $question_text . '</p>';
+
+//         // Получить список вариантов ответов для каждого вопроса
+//         $sql_answers = "SELECT * FROM answers WHERE question_id = $question_id";
+//         $result_answers = mysqli_query($con, $sql_answers);
+
+//         if (mysqli_num_rows($result_answers) > 0) {
+//             while ($row_answer = mysqli_fetch_assoc($result_answers)) {
+//                 $answer_id = $row_answer['id'];
+//                 $answer_text = $row_answer['answer_text'];
+
+//                 echo '<input type="radio" name="answer[' . $question_id . ']" value="' . $answer_id . '" required>';
+//                 echo '<label for="' . $answer_id . '">' . $answer_text . '</label>';
+//                 echo '<br>';
+//             }
+//         }
+//       }
+//     }
+// }
+
+
+
+
+?>
+    
+
+<!-- 
+
+
+
+    <input type="submit" value="Отправить">
+    </form> 
+
+
+    <form action="submit.php" method="POST" class="fff">
+
+
+<h2>test2</h2> -->
+
+
+
+
+<?php 
+
+// $sql = "SELECT * FROM questions  ";
+// $result = mysqli_query($con, $sql);
+
+// if (mysqli_num_rows($result) > 0) {
+
+
+
+//     while ($row = mysqli_fetch_assoc($result)) {
+//         $question_id = $row['id'];
+//         $question_text = $row['question_text'];
+//         if($row['test_id']==2){
+//         echo '<p>' . $question_text . '</p>';
+
+//         // Получить список вариантов ответов для каждого вопроса
+//         $sql_answers = "SELECT * FROM answers WHERE question_id = $question_id";
+//         $result_answers = mysqli_query($con, $sql_answers);
+
+//         if (mysqli_num_rows($result_answers) > 0) {
+//             while ($row_answer = mysqli_fetch_assoc($result_answers)) {
+//                 $answer_id = $row_answer['id'];
+//                 $answer_text = $row_answer['answer_text'];
+
+//                 echo '<input type="radio" name="answer[' . $question_id . ']" value="' . $answer_id . '" required>';
+//                 echo '<label for="' . $answer_id . '">' . $answer_text . '</label>';
+//                 echo '<br>';
+//             }
+//         }
+//       }
+//     }
+// }
+
+
+
+
 ?>
     
 
 
 
-
+<!-- 
 
     <input type="submit" value="Отправить">
-    </form>
-
-
+    </form> 
+ -->
 
 
 

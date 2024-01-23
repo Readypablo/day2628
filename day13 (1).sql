@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Янв 22 2024 г., 11:19
+-- Время создания: Янв 23 2024 г., 10:58
 -- Версия сервера: 8.0.30
 -- Версия PHP: 7.4.30
 
@@ -113,7 +113,10 @@ INSERT INTO `questions` (`id`, `question_text`, `questions_ball`, `test_id`) VAL
 (9, 'чем болел ильяс вакилов', 2, 0),
 (10, 'еж идет со скоростью 10 м\\с через сколько упадет яблоко', 5, 0),
 (11, 'тяжек в шакале скока', 4, 0),
-(12, 'скока часов у тебя в доте', 2, 0);
+(12, 'скока часов у тебя в доте', 2, 0),
+(16, '1', 1, 2),
+(17, '2', 2, 3),
+(19, '4', 4, 4);
 
 -- --------------------------------------------------------
 
@@ -159,11 +162,21 @@ CREATE TABLE `user_answers` (
 --
 
 INSERT INTO `user_answers` (`id`, `user_id`, `question_id`, `answer_id`) VALUES
-(43, 26, 1, 1),
-(44, 26, 2, 4),
-(45, 26, 3, 7),
-(46, 26, 4, 9),
-(47, 26, 7, 11);
+(48, 1, 1, 2),
+(49, 1, 2, 4),
+(50, 1, 3, 7),
+(51, 1, 4, 9),
+(52, 1, 7, 11),
+(53, 26, 1, 1),
+(54, 26, 2, 6),
+(55, 26, 3, 8),
+(56, 26, 4, 9),
+(57, 26, 7, 12),
+(58, 26, 8, 13),
+(59, 26, 9, 21),
+(60, 26, 10, 15),
+(61, 26, 11, 17),
+(62, 26, 12, 19);
 
 -- --------------------------------------------------------
 
@@ -244,7 +257,7 @@ ALTER TABLE `books`
 -- AUTO_INCREMENT для таблицы `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
@@ -256,7 +269,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `user_answers`
 --
 ALTER TABLE `user_answers`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT для таблицы `workout`
